@@ -1,0 +1,63 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by fullname"
+          [(ngModel)]="fullname"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchFullname()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Poeple List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let personal of personals; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActivePersonals(persons, i)"
+        >
+          {{ persons.fullname }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPersons()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentTutorial">
+        <h4>People</h4>
+        <div>
+          <label><strong>Fullname:</strong></label> {{ currentPersons.fullname }}
+        </div>
+        <div>
+          <label><strong>Birth:</strong></label>
+          {{ currentPersons.birth }}
+        </div>
+        <div>
+          <label><strong>Adopted:</strong></label>
+          {{ currentPersons.adopted ? "Adopted" : "Pending" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/persons/{{ currentPersons.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentPersons">
+        <br />
+        <p>Please click on a Person...</p>
+      </div>
+    </div>
+  </div>

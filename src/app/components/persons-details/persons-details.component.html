@@ -1,0 +1,75 @@
+<div style="width: 400px; margin: auto;">
+    <div *ngIf="currentPersons" class="edit-form">
+      <h4>People</h4>
+      <form>
+        <div class="form-group">
+          <label for="fullname">Fullname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullname"
+            [(ngModel)]="currentPersons.fullname"
+            name="fullname"
+          />
+        </div>
+        <div class="form-group">
+          <label for="birth">Birth</label>
+          <input
+            type="text"
+            class="form-control"
+            id="birth"
+            [(ngModel)]="currentPersons.birth"
+            name="birth"
+          />
+        </div>
+        <div class="form-group">
+            <label for="adopted">Adopted</label>
+            <input
+              type="text"
+              class="form-control"
+              id="adopted"
+              [(ngModel)]="currentPersons.adopted"
+              name="adopted"
+            />
+          </div>
+  
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          <!-- {{ currentPersons.adopted ? "Adopted" : Pending" }} -->
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentPersons.adopted"
+        (click)="updatePersons(false)"
+      >
+        Redo
+      </button>
+      <button
+        *ngIf="!currentPersons.adopted"
+        class="badge badge-primary mr-2"
+        (click)="updateAdopted(true)"
+      >
+        Adopted
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deletePersons()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success"
+        (click)="updatePersons()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentPersons">
+      <br />
+      <p>Cannot access this Persons...</p>
+    </div>
+  </div>
